@@ -160,10 +160,10 @@ IF(Boost_FOUND)
 		MARK_AS_ADVANCED(BUILDNAME)
 		add_subdirectory(test)
 	ENDIF(BUILD_TESTING)
-	add_subdirectory("src/inspector")
 ELSE(Boost_FOUND)
 	message(WARNING "Boost not found, disabling tests")
 ENDIF(Boost_FOUND)
+add_subdirectory("src/inspector")
 
 #################################
 # Documentation
