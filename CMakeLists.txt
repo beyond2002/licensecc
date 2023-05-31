@@ -29,6 +29,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 
+SET( Boost_USE_STATIC_LIBS ON )
 find_package(Boost COMPONENTS unit_test_framework system filesystem)
 IF(Boost_FOUND)
     #find lccgen executable or build it.
@@ -152,7 +153,7 @@ if(WIN32 AND "x${CMAKE_CXX_COMPILER_ARCHITECTURE_ID}" STREQUAL "x")
     endif()
 	    message(STATUS "Compiler architecture: ${CMAKE_CXX_COMPILER_ARCHITECTURE_ID}")
 endif()
-SET( Boost_USE_STATIC_LIBS ON )
+# SET( Boost_USE_STATIC_LIBS ON )
 # find_package(Boost COMPONENTS unit_test_framework system filesystem)
 #if boost is found enable tests
 IF(Boost_FOUND)
