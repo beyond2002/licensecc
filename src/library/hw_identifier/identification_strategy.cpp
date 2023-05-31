@@ -47,6 +47,12 @@ std::unique_ptr<IdentificationStrategy> IdentificationStrategy::get_strategy(LCC
 		case STRATEGY_DISK:
 			result = unique_ptr<IdentificationStrategy>(dynamic_cast<IdentificationStrategy*>(new DiskStrategy()));
 			break;
+		case STRATEGY_ETHERNET_CPU:
+			result = unique_ptr<IdentificationStrategy>(dynamic_cast<IdentificationStrategy*>(new Ethernet(false, true)));
+			break;
+		case STRATEGY_IP_CPU:
+			result = unique_ptr<IdentificationStrategy>(dynamic_cast<IdentificationStrategy*>(new Ethernet(true, true)));
+			break;
 		default:
 			throw logic_error("strategy not supported");
 	}

@@ -11,6 +11,7 @@
 #include <licensecc/datatypes.h>
 
 #include "../base/base.h"
+#include "../base/string_utils.h"
 #include "cpu_info.hpp"
 #include "execution_environment.hpp"
 
@@ -85,9 +86,9 @@ bool ExecutionEnvironment::is_cloud() const {
 // TODO test and azure
 LCC_API_CLOUD_PROVIDER ExecutionEnvironment::cloud_provider() const {
 	LCC_API_CLOUD_PROVIDER result = PROV_UNKNOWN;
-	const string bios_description = m_dmi_info.bios_description();
-	const string bios_vendor = m_dmi_info.bios_vendor();
-	const string sys_vendor = m_dmi_info.sys_vendor();
+	const string bios_description = toupper_copy(m_dmi_info.bios_description());
+	const string bios_vendor = toupper_copy(m_dmi_info.bios_vendor());
+	const string sys_vendor = toupper_copy(m_dmi_info.sys_vendor());
 	if (bios_description.size() > 0 || bios_vendor.size() > 0 || sys_vendor.size() > 0) {
 		if (bios_vendor.find("SEABIOS") != string::npos || bios_description.find("ALIBABA") != string::npos ||
 			sys_vendor.find("ALIBABA") != string::npos) {

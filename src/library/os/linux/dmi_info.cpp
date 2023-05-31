@@ -3,6 +3,8 @@
 #include "../../base/string_utils.h"
 #include "../../base/logger.h"
 #include "../dmi_info.hpp"
+#include <thread>
+#include <fstream>
 
 namespace license {
 namespace os {
@@ -33,6 +35,25 @@ DmiInfo::DmiInfo() {
 	} catch (const std::exception& e) {
 		m_sys_vendor = "";
 		LOG_DEBUG("Can not read bios_description %s", e.what());
+	}
+	// try {
+	// 	m_cpu_cores = std::thread::hardware_concurrency();
+	// } catch (const std::exception& e) {
+	// 	m_cpu_cores = 0;
+	// 	LOG_DEBUG("Cannot determine number of CPU cores: %s", e.what());
+	// }
+	try {
+		std::ifstream cpuinfo("/proc/cpuinfo");
+		std::string line;
+		m_cpu_cores = 0;
+		while(std::getline(cpuinfo, line)) {
+			if (line.find("processor") != std::string::npos) {
+				m_cpu_cores++;
+			}
+		}
+	} catch (const std::exception& e) {
+		m_cpu_cores = 0;
+		LOG_DEBUG("Cannot determine number of CPU cores: %s", e.what());
 	}
 }
 

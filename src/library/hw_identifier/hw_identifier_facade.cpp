@@ -41,7 +41,7 @@ std::string HwIdentifierFacade::generate_user_pc_signature(LCC_API_HW_IDENTIFICA
 		char* env_var_value = getenv(LCC_IDENTIFICATION_STRATEGY_ENV_VAR);
 		if (env_var_value != nullptr && env_var_value[0] != '\0') {
 			int strategy_int = atoi(env_var_value);
-			if (strategy_int < 0 || strategy_int > 3) {
+			if (strategy_int < 0 || strategy_int >= STRATEGY_MAX) {
 				LOG_WARN("unknown " LCC_IDENTIFICATION_STRATEGY_ENV_VAR " %s", env_var_value);
 			} else {
 				strategy = (LCC_API_HW_IDENTIFICATION_STRATEGY)strategy_int;

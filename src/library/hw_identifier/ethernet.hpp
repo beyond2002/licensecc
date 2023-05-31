@@ -16,8 +16,9 @@ namespace hw_identifier {
 class Ethernet : public IdentificationStrategy {
 private:
 	const bool use_ip;
+	const bool add_cpu;
 public:
-	Ethernet(bool use_ip);
+	Ethernet(bool use_ip, bool add_cpu = false);
 	virtual ~Ethernet();
 	virtual LCC_API_HW_IDENTIFICATION_STRATEGY identification_strategy() const;
 	virtual std::vector<HwIdentifier> alternative_ids() const;

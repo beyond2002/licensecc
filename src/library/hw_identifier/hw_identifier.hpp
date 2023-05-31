@@ -20,7 +20,7 @@
 namespace license {
 namespace hw_identifier {
 
-#define HW_IDENTIFIER_PROPRIETARY_DATA 7
+#define HW_IDENTIFIER_PROPRIETARY_DATA 11
 
 /**
  * data[0]
@@ -28,9 +28,12 @@ namespace hw_identifier {
  *
  * if bit 7 = 0
  * bit 6 = environment variable was used to generate pc_id
- * bit 5-4-3 define identification strategy.
- * bit 2-1-0 unused (crc?)
- * data[1-7] are hardware identifier proprietary strategy data.
+ *
+ * * data[1]
+ * bit 7-6-5 define identification strategy.
+ * bit 4---0 unused (crc?)
+ * data[2-7] are hardware identifier proprietary strategy data: MAC or IP
+ * data[8-11] are cpu cores
  */
 
 class HwIdentifier {
