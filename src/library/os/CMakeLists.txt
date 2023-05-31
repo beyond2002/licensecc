@@ -32,7 +32,7 @@ ELSE(UNIX OR OPENSSL_FOUND)
         windows/network.cpp)
 ENDIF(UNIX OR OPENSSL_FOUND)
 
-IF(LCC_INITIALIZE_LICENSE_PROJECT)
+IF(LCC_INITIALIZE_LICENSE_PROJECT AND (NOT CMAKE_CROSSCOMPILING))
     #dependency of signature_verifier.cpp
     add_dependencies(os project_initialize)
 ENDIF(LCC_INITIALIZE_LICENSE_PROJECT)

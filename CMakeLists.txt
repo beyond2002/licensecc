@@ -113,7 +113,7 @@ set(LCC_INCLUDE_DIR "${LCC_PROJECTS_BASE_DIR}/${LCC_PROJECT_NAME}/include/${PROJ
 set(LCC_PROJECT_PUBLIC_KEY "${LCC_INCLUDE_DIR}/public_key.h" )
 set(LCC_PROJECT_PRIVATE_KEY "${LCC_PROJECTS_BASE_DIR}/${LCC_PROJECT_NAME}/private_key.rsa" )
 
-IF(LCC_INITIALIZE_LICENSE_PROJECT)
+IF(LCC_INITIALIZE_LICENSE_PROJECT AND (NOT CMAKE_CROSSCOMPILING))
     #initialize project
     #load the current project from files or find it from environment variables or create a default one
     add_custom_target(project_initialize
